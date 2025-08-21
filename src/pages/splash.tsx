@@ -1,59 +1,47 @@
 import { useRouter } from "next/router";
-import Image from "next/image";
 import { useState } from "react";
 
-const Splash = () => {
+// SegMint Placeholder
+const segmintProfile = "bigwins"; // replace with dynamic logic later
+
+export default function Splash() {
   const router = useRouter();
-  const [phone, setPhone] = useState("");
-
-  // SegMint profile placeholder (replace later with real logic)
-  const segmintProfile = "relaxed";
-
-  // Banner mapping
-  const banners: Record<string, string> = {
-    relaxed: "/images/relaxed-splash-banner.png",
-    tezz: "/images/tezz-splash-banner.png",
-    bigwins: "/images/bigwins-splash-banner.png",
-    mainacts: "/images/mainacts-splash-banner.png",
-    ladyboss: "/images/ladyboss-splash-banner.png",
-  };
+  const [mobile, setMobile] = useState("");
 
   const handleContinue = () => {
-    if (phone.trim()) {
+    if (mobile) {
       router.push("/otp");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-600 to-blue-600 px-4">
-      <div className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm">
-        <Image
-          src={banners[segmintProfile] || banners["relaxed"]}
-          alt="SegMint Banner"
-          width={400}
-          height={200}
-          className="rounded-lg mb-6"
+    <div className="flex flex-col h-screen">
+      {/* Banner Area */}
+      <div className="h-1/2 w-full">
+        <img
+          src={`/images/${segmintProfile}-splash-banner.png`}
+          alt="Splash Banner"
+          className="w-full h-full object-cover"
         />
-        <h1 className="text-xl font-bold text-center mb-4">SegMint</h1>
-        <p className="text-gray-600 text-center mb-6">
-          Enter your mobile number to continue
-        </p>
+      </div>
+
+      {/* Mobile Input */}
+      <div className="flex flex-col items-center justify-center h-1/2 bg-white p-6">
+        <h2 className="text-xl font-bold mb-4">Enter Mobile Number</h2>
         <input
           type="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="Enter mobile number"
-          className="w-full p-3 border rounded-lg mb-4"
+          value={mobile}
+          onChange={(e) => setMobile(e.target.value)}
+          placeholder="10-digit mobile number"
+          className="w-full border rounded px-3 py-2 mb-4"
         />
         <button
           onClick={handleContinue}
-          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
+          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
         >
           Continue
         </button>
       </div>
     </div>
   );
-};
-
-export default Splash;
+}
