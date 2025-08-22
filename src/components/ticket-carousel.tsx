@@ -4,10 +4,10 @@ type TicketProps = {
   id: number;
 };
 
-function generateTicket(): number[][] {
-  // 3x9 housie ticket with 15 numbers
-  const ticket = Array.from({ length: 3 }, () =>
-    Array(9).fill(null) as (number | null)[]
+// Notice: number | null allowed
+function generateTicket(): (number | null)[][] {
+  const ticket: (number | null)[][] = Array.from({ length: 3 }, () =>
+    Array(9).fill(null)
   );
 
   const columns = [
