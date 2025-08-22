@@ -19,7 +19,6 @@ const demoPrizes: Prize[] = [
 export default function PrizeBoard() {
   const [prizes, setPrizes] = useState<Prize[]>(demoPrizes);
 
-  // Demo: claim a prize when clicked
   const handleClaim = (id: number) => {
     setPrizes(
       prizes.map((p) =>
@@ -37,3 +36,23 @@ export default function PrizeBoard() {
             key={p.id}
             className="flex justify-between items-center border-b pb-1"
           >
+            <span>
+              {p.name} – ₹{p.amount}
+            </span>
+            <button
+              onClick={() => handleClaim(p.id)}
+              disabled={p.status === "CLAIMED"}
+              className={`px-2 py-1 text-xs rounded ${
+                p.status === "OPEN"
+                  ? "bg-indigo-500 text-white"
+                  : "bg-gray-300 text-gray-600 cursor-not-allowed"
+              }`}
+            >
+              {p.status}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
