@@ -1,43 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface AiNumPadProps {
   onSelect?: (num: number) => void;
 }
 
 export default function AiNumPad({ onSelect }: AiNumPadProps) {
-  const [suggested, setSuggested] = useState<number[]>([]);
+  const [suggestion, setSuggestion] = useState<number | null>(null);
 
-  // For demo: just pick random numbers 1–90
   useEffect(() => {
-    const picks = Array.from({ length: 12 }, () =>
-      Math.floor(Math.random() * 90) + 1
-    );
-    setSuggested(picks);
+    // Demo suggestion refresh every 3s
+    const interval = setInterval(() => {
+      setSuggestion(Math.floor(Math.random() * 90) + 1);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
-  const handleClick = (num: number) => {
-    if (onSelect) onSelect(num);
-  };
-
   return (
-    <div className="grid grid-cols-3 gap-2 p-2 bg-white rounded shadow">
-      {suggested.map((num, i) => (
-        <button
-          key={i}
-          onClick={() => handleClick(num)}
-          className="py-3 bg-green-500 text-white rounded hover:bg-green-600"
-        >
-          {num}
-        </button>
-      ))}
+    <div className="w-full p-2 bg-white rounded shadow space-y-2">
+      <h2 className="font-semibold">AI NumPad 🤖</h2>
 
-      {/* Escape hatch to full NumPad */}
-      <button
-        onClick={() => alert("Open full NumPad")}
-        className="col-span-3 py-3 bg-gray-400 text-white rounded"
-      >
-        Open Full NumPad
-      </button>
+      <div className="flex flex-wrap gap-2">
+        {Array.from({ length: 9 }, (_, i) => i * 10 + 1).map((start) => (
+          <button
+            key={start}
+            onClick={() => onSelect && onSelect(start)}
+            className="flex-1 m-1 py-2 rounded bg-purple-200 hover:bg-purple-300"
+          >
+            {start}-{start + 9}
+          </button>
+        ))}
+      </div>
+
+      <div className="text-sm text-gray-600">
+        Suggested pick:{" "}
+        <span className="font-bold">{suggestion ?? "-"}</span>
+      </div>
     </div>
   );
 }

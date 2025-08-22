@@ -15,7 +15,6 @@ export default function DiceMind({ onRoll }: DiceMindProps) {
   };
 
   useEffect(() => {
-    // Demo suggestion: random number between 1–6
     setSuggestion(Math.floor(Math.random() * 6) + 1);
   }, [lastRoll]);
 
@@ -30,7 +29,8 @@ export default function DiceMind({ onRoll }: DiceMindProps) {
       </button>
       <div>Last Roll: {lastRoll ?? "-"}</div>
       <div className="text-sm text-gray-600">
-        AI Suggestion: try for <span className="font-bold">{suggestion}</span>
+        AI Suggestion: try for{" "}
+        <span className="font-bold">{suggestion ?? "-"}</span>
       </div>
     </div>
   );

@@ -1,14 +1,12 @@
 import React from "react";
-import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full flex justify-around items-center p-3 bg-white border-t text-sm text-gray-600">
-      <Link href="/lobby">🏠 Home</Link>
-      <Link href="/cashier">💳 Cashier</Link>
-      <Link href="/discovery">🌐 Discovery</Link>
-      <Link href="/mygames">🎮 My Games</Link>
-      <Link href="/support">🧑‍💻 Support</Link>
+    <footer className="bg-gray-800 text-gray-200 py-3 px-4 text-center text-sm mt-6">
+      <p>© 2025 FullHousey Demo · All rights reserved.</p>
+      <p className="text-xs text-gray-400">
+        Demo build — gameplay and prizes are simulated
+      </p>
     </footer>
   );
 }

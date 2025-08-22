@@ -26,7 +26,9 @@ export default function PrizeSnlBoard() {
 
   return (
     <div className="bg-white rounded-lg p-4 shadow">
-      <h2 className="font-semibold mb-2">Snakes & Ladders Prize Pool – ₹10,000</h2>
+      <h2 className="font-semibold mb-2">
+        Snakes & Ladders Prize Pool – ₹10,000
+      </h2>
       <ul className="space-y-2">
         {prizes.map((p) => (
           <li

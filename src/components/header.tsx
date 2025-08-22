@@ -3,23 +3,24 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="w-full flex items-center justify-between p-4 bg-indigo-600 text-white">
-      {/* Left (empty for now, can hold back button later) */}
-      <div className="w-1/3"></div>
+    <header className="bg-indigo-700 text-white py-3 px-4 flex justify-between items-center shadow">
+      {/* Logo / Title */}
+      <Link href="/lobby" className="text-lg font-bold">
+        FullHousey 🎲
+      </Link>
 
-      {/* Center Logo */}
-      <div className="w-1/3 text-center font-bold text-xl">
-        Housie Khazana
-      </div>
-
-      {/* Right: balance + notifications */}
-      <div className="w-1/3 flex justify-end gap-4 text-sm">
-        <span className="cursor-pointer">🔔</span>
-        <span className="cursor-pointer">💰 500</span>
-        <Link href="/account">
-          <span className="cursor-pointer">👤</span>
+      {/* Nav buttons */}
+      <nav className="space-x-4">
+        <Link href="/game/housie" className="hover:underline">
+          Housie
         </Link>
-      </div>
+        <Link href="/game/snakes" className="hover:underline">
+          Snakes & Ladders
+        </Link>
+        <Link href="/profile" className="hover:underline">
+          My Account
+        </Link>
+      </nav>
     </header>
   );
 }
