@@ -7,7 +7,7 @@ interface NumPadProps {
 export default function NumPad({ onSelect }: NumPadProps) {
   const [rangeStart, setRangeStart] = useState<number | null>(null);
 
-  // Ranges: 1-9, 10-19, ... 90
+  // Ranges: 1–9, 10–19, ... 90
   const ranges = Array.from({ length: 9 }, (_, i) => i * 10 + 1);
 
   const handleRangeClick = (start: number) => {
@@ -37,9 +37,20 @@ export default function NumPad({ onSelect }: NumPadProps) {
       {/* Overlay grid when a range is selected */}
       {rangeStart !== null && (
         <div className="grid grid-cols-5 gap-2 bg-white p-2 rounded shadow">
-          {Array.from({ length: 10 }, (_, i) => rangeStart + i).map((num) =>
-            num <= 90 ? (
-              <button
-                key={num}
-                onClick={() => handleNumberClick(num)}
-                className="py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+          {Array.from({ length: 10 }, (_, i) => rangeStart + i).map(
+            (num) =>
+              num <= 90 && (
+                <button
+                  key={num}
+                  onClick={() => handleNumberClick(num)}
+                  className="py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+                >
+                  {num}
+                </button>
+              )
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
