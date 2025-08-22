@@ -1,26 +1,36 @@
+import React from "react";
+import Link from "next/link";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+
 export default function Lobby() {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-blue-700 text-white p-4 text-center text-lg font-bold">
-        FullHousey Lobby
-      </header>
+      <Header />
 
-      {/* Carousel Placeholder */}
-      <main className="flex-1 bg-gray-100 flex flex-col items-center justify-center">
-        <p className="text-xl font-semibold mb-4">Featured Shows</p>
-        <div className="w-4/5 h-40 bg-white shadow-md rounded flex items-center justify-center">
-          Carousel goes here
+      {/* Main content */}
+      <main className="flex-1 p-4 space-y-4">
+        <h1 className="text-xl font-semibold mb-2">Lobby</h1>
+        <p className="text-gray-600 mb-4">Choose your game</p>
+
+        <div className="grid grid-cols-2 gap-4">
+          <Link href="/game/housie">
+            <div className="p-4 rounded-xl shadow-md bg-white hover:bg-gray-50 cursor-pointer text-center">
+              🎲 Housie Show
+            </div>
+          </Link>
+
+          <Link href="/game/snakes">
+            <div className="p-4 rounded-xl shadow-md bg-white hover:bg-gray-50 cursor-pointer text-center">
+              🐍 Snakes & Ladders
+            </div>
+          </Link>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white p-4 flex justify-around">
-        <button>Fast Games</button>
-        <button>Join Show</button>
-        <button>Top 10</button>
-        <button>Featured</button>
-      </footer>
+      <Footer />
     </div>
   );
 }
