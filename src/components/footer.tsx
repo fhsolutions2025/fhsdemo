@@ -1,4 +1,4 @@
-// src/components/Footer.tsx
+// src/components/footer.tsx
 import { useRouter } from "next/router";
 import { Home, Wallet, Gamepad2, LifeBuoy, Sparkles, Dice5, Grid3x3 } from "lucide-react";
 
