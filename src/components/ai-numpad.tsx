@@ -17,6 +17,7 @@ export default function AiNumPad({ onSelect }: AiNumPadProps) {
 
   return (
     <div className="w-full p-2 bg-white rounded shadow space-y-2">
+    <div className="card w-full space-y-2">
       <h2 className="font-semibold">AI NumPad 🤖</h2>
 
       <div className="flex flex-wrap gap-2">

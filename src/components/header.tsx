@@ -7,6 +7,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full h-14 bg-gray-800 text-white flex items-center justify-between px-4 shadow-md z-50">
+    <header className="header">
       {/* Logo / Brand */}
       <Link href="/lobby" className="text-xl font-bold tracking-wide">
         FullHousey
@@ -21,6 +22,7 @@ export default function Header() {
 
       {/* Placeholder for profile/avatar */}
       <Link href="/profile" className="rounded-full bg-purple-500 w-8 h-8 flex items-center justify-center">
+      <Link href="/profile" className="profile-glow bg-purple-500 w-8 h-8 flex items-center justify-center">
         😊
       </Link>
     </header>

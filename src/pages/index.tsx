@@ -16,6 +16,8 @@ export default function Index() {
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
       <div className="p-6 rounded-lg shadow-lg bg-white">
+    <div className="flex h-screen items-center justify-center bg-gradient-gold">
+      <div className="card p-6 shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Welcome to FullHousey Demo</h1>
         <input
           type="password"
@@ -28,6 +30,7 @@ export default function Index() {
           onClick={handleLogin}
           className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
         >
+        <button onClick={handleLogin} className="w-full btn-secondary">
           Continue
         </button>
       </div>

@@ -24,6 +24,7 @@ export default function Snakes() {
       <button
         onClick={rollDice}
         className="px-6 py-2 bg-blue-500 rounded-lg text-white mb-6"
+        className="btn-secondary px-6 py-2 mb-6"
       >
         Roll Dice 🎲
       </button>

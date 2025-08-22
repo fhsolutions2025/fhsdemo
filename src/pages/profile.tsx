@@ -9,6 +9,7 @@ const profiles = [
 export default function ProfileSelector() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-800 to-gray-900 text-white p-8">
+    <main className="min-h-screen bg-gradient-relaxed text-white p-8">
       <h2 className="text-3xl font-bold mb-6 text-center">🎭 Choose Your Profile</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
         {profiles.map((p) => (
@@ -16,8 +17,10 @@ export default function ProfileSelector() {
             key={p.id}
             onClick={() => (window.location.href = "/lobby")}
             className="flex flex-col items-center bg-gray-800 rounded-xl shadow-lg p-4 hover:bg-gray-700 hover:scale-105 transition"
+            className="card bg-gray-800 text-white flex flex-col items-center hover:bg-gray-700 hover:scale-105 transition"
           >
             <img src={p.img} alt={p.name} className="w-24 h-24 rounded-full border-2 border-yellow-400 mb-3" />
+            <img src={p.img} alt={p.name} className="w-24 h-24 profile-glow mb-3" />
             <span className="font-semibold">{p.name}</span>
           </button>
         ))}

@@ -21,6 +21,7 @@ export default function Footer() {
 
   return (
     <footer className="fixed bottom-0 left-0 w-full bg-gray-900 text-white border-t border-gray-700">
+    <footer className="footer">
       <div className="flex justify-around items-center h-16 text-sm">
         {/* Home */}
         <button
@@ -46,27 +47,3 @@ export default function Footer() {
           className="flex flex-col items-center text-yellow-400 animate-pulse"
         >
           <NatIcon className="w-6 h-6" />
-          <span className="font-bold">{natLabel}</span>
-        </button>
-
-        {/* My Games */}
-        <button
-          onClick={() => alert("My Games 📚")}
-          className="flex flex-col items-center hover:text-blue-400"
-        >
-          <Gamepad2 className="w-5 h-5" />
-          <span>My Games</span>
-        </button>
-
-        {/* Support */}
-        <button
-          onClick={() => alert("Support with AI 🤖")}
-          className="flex flex-col items-center hover:text-blue-400"
-        >
-          <LifeBuoy className="w-5 h-5" />
-          <span>Support</span>
-        </button>
-      </div>
-    </footer>
-  );
-}

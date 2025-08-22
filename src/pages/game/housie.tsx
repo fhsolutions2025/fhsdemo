@@ -21,6 +21,7 @@ export default function Housie() {
       <button
         onClick={callNumber}
         className="px-6 py-2 bg-green-500 rounded-lg text-white mb-6"
+        className="btn-primary px-6 py-2 mb-6"
       >
         Call Number
       </button>

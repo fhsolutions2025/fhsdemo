@@ -20,10 +20,12 @@ export default function DiceMind({ onRoll }: DiceMindProps) {
 
   return (
     <div className="bg-white p-4 rounded shadow text-center space-y-2">
+    <div className="card text-center space-y-2">
       <h2 className="font-semibold">DiceMind 🎲</h2>
       <button
         onClick={rollDice}
         className="px-4 py-2 bg-indigo-600 text-white rounded"
+        className="btn-secondary"
       >
         Roll Dice
       </button>

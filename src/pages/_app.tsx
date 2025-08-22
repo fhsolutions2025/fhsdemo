@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Footer />
     </>
   );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

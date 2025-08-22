@@ -16,6 +16,7 @@ export default function OTP() {
 
   return (
     <main className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-pink-600 to-red-600 text-white">
+    <main className="flex flex-col items-center justify-center h-screen bg-gradient-energy text-white">
       <h2 className="text-3xl font-bold mb-8">🔑 Enter OTP</h2>
       <div className="flex gap-4 mb-8">
         {otp.map((digit, i) => (
@@ -33,6 +34,7 @@ export default function OTP() {
       <button
         onClick={() => (window.location.href = "/profile")}
         className="px-8 py-3 bg-yellow-400 text-black font-bold rounded-xl shadow-lg hover:scale-105 transition"
+        className="btn-primary px-8 py-3"
       >
         Verify →
       </button>

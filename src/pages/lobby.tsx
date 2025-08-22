@@ -6,6 +6,7 @@ import Footer from "../components/footer";
 export default function Lobby() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gradient-relaxed">
       <Header />
 
       <main className="flex-1 p-6 space-y-6">
@@ -18,6 +19,7 @@ export default function Lobby() {
           <Link
             href="/game/housie"
             className="p-6 bg-white rounded-lg shadow hover:shadow-md transition"
+            className="card p-6 hover:shadow-md transition"
           >
             <h2 className="text-lg font-semibold mb-2">🎲 Housie Show</h2>
             <p className="text-sm text-gray-600">
@@ -28,6 +30,7 @@ export default function Lobby() {
           <Link
             href="/game/snakes"
             className="p-6 bg-white rounded-lg shadow hover:shadow-md transition"
+            className="card p-6 hover:shadow-md transition"
           >
             <h2 className="text-lg font-semibold mb-2">🐍 Snakes & Ladders</h2>
             <p className="text-sm text-gray-600">
