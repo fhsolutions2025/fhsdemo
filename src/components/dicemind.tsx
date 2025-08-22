@@ -33,7 +33,22 @@ export default function DiceMind({ onRoll }: DiceMindProps) {
       <div className="text-sm text-gray-600">
         AI Suggestion: try for{" "}
         <span className="font-bold">{suggestion ?? "-"}</span>
+    return (
+      <div className="bg-white p-4 rounded shadow text-center space-y-2">
+        <div className="card text-center space-y-2">
+          <h2 className="font-semibold">DiceMind 🎲</h2>
+          <button onClick={rollDice} className="btn-secondary">
+            Roll Dice
+          </button>
+          <div>Last Roll: {lastRoll ?? "-"}</div>
+          <div className="text-sm text-gray-600">
+            AI Suggestion: try for{" "}
+            <span className="font-bold">{suggestion ?? "-"}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+    );
+  }

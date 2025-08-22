@@ -20,7 +20,6 @@ export default function Lobby() {
             href="/game/housie"
             className="p-6 bg-white rounded-lg shadow hover:shadow-md transition"
             className="card p-6 hover:shadow-md transition"
-            className="card p-6 bg-white rounded-lg shadow hover:shadow-md transition"
           >
             <h2 className="text-lg font-semibold mb-2">🎲 Housie Show</h2>
             <p className="text-sm text-gray-600">
@@ -32,7 +31,6 @@ export default function Lobby() {
             href="/game/snakes"
             className="p-6 bg-white rounded-lg shadow hover:shadow-md transition"
             className="card p-6 hover:shadow-md transition"
-            className="card p-6 bg-white rounded-lg shadow hover:shadow-md transition"
           >
             <h2 className="text-lg font-semibold mb-2">🐍 Snakes & Ladders</h2>
             <p className="text-sm text-gray-600">

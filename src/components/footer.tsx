@@ -1,6 +1,7 @@
 // src/components/footer.tsx
 import { useRouter } from "next/router";
 import { Home, Wallet, Gamepad2, LifeBuoy, Sparkles, Dice5, Grid3x3 } from "lucide-react";
+import { Home, Wallet, Sparkles, Dice5, Grid3x3 } from "lucide-react";
 
 export default function Footer() {
   const router = useRouter();
@@ -47,3 +48,10 @@ export default function Footer() {
           className="flex flex-col items-center text-yellow-400 animate-pulse"
         >
           <NatIcon className="w-6 h-6" />
+          <NatIcon className="w-6 h-6" />
+          <span>{natLabel}</span>
+        </button>
+      </div>
+    </footer>
+  );
+}
