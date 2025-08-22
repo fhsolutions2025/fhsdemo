@@ -1,26 +1,28 @@
-import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Header() {
+  const router = useRouter();
+  const { pathname } = router;
+
   return (
-    <header className="bg-indigo-700 text-white py-3 px-4 flex justify-between items-center shadow">
-      {/* Logo / Title */}
-      <Link href="/lobby" className="text-lg font-bold">
-        FullHousey 🎲
+    <header className="fixed top-0 left-0 w-full h-14 bg-gray-800 text-white flex items-center justify-between px-4 shadow-md z-50">
+      {/* Logo / Brand */}
+      <Link href="/lobby" className="text-xl font-bold tracking-wide">
+        FullHousey
       </Link>
 
-      {/* Nav buttons */}
-      <nav className="space-x-4">
-        <Link href="/game/housie" className="hover:underline">
-          Housie
-        </Link>
-        <Link href="/game/snakes" className="hover:underline">
-          Snakes & Ladders
-        </Link>
-        <Link href="/profile" className="hover:underline">
-          My Account
-        </Link>
-      </nav>
+      {/* Context-sensitive title */}
+      <h2 className="text-lg font-semibold">
+        {pathname.includes("housie") && "🎟️ Housie"}
+        {pathname.includes("snakes") && "🐍 Snakes & Ladders"}
+        {pathname === "/lobby" && "🏠 Lobby"}
+      </h2>
+
+      {/* Placeholder for profile/avatar */}
+      <Link href="/profile" className="rounded-full bg-purple-500 w-8 h-8 flex items-center justify-center">
+        😊
+      </Link>
     </header>
   );
 }

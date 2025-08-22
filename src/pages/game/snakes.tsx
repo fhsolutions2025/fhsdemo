@@ -1,47 +1,35 @@
-import React, { useState } from "react";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import DiceMind from "../../components/dicemind";
-import PrizeSnlBoard from "../../components/prize-snl-board";
+import { useState } from "react";
+
+const snakes: Record<number, number> = { 99: 54, 70: 55, 52: 42, 25: 2 };
+const ladders: Record<number, number> = { 6: 27, 22: 58, 44: 79, 72: 93 };
 
 export default function Snakes() {
-  const [position, setPosition] = useState(1);
-  const [rolls, setRolls] = useState<number[]>([]);
+  const [pos, setPos] = useState(1);
+  const [dice, setDice] = useState<number | null>(null);
 
-  const snakes: Record<number, number> = { 17: 7, 54: 34, 62: 19, 98: 79 };
-  const ladders: Record<number, number> = { 3: 22, 5: 8, 20: 29, 27: 56, 72: 91 };
-
-  const handleRoll = (roll: number) => {
-    let newPos = position + roll;
-    if (newPos > 100) newPos = position; // overshoot stays put
+  const rollDice = () => {
+    const d = Math.floor(Math.random() * 6) + 1;
+    let newPos = pos + d;
+    if (newPos > 100) newPos = pos; // must land exact
     if (snakes[newPos]) newPos = snakes[newPos];
     if (ladders[newPos]) newPos = ladders[newPos];
-    setPosition(newPos);
-    setRolls([...rolls, roll]);
+    setDice(d);
+    setPos(newPos);
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      <Header />
+    <div className="pt-16 pb-20 flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4">🐍 Snakes & Ladders</h1>
 
-      <main className="flex-1 p-4 space-y-4">
-        <h1 className="text-xl font-bold">🐍 Snakes & Ladders</h1>
+      <button
+        onClick={rollDice}
+        className="px-6 py-2 bg-blue-500 rounded-lg text-white mb-6"
+      >
+        Roll Dice 🎲
+      </button>
 
-        <PrizeSnlBoard />
-
-        <DiceMind onRoll={handleRoll} />
-
-        <div className="text-center mt-4">
-          Current Position:{" "}
-          <span className="font-bold">{position}</span>
-        </div>
-
-        <div className="text-sm text-gray-600">
-          Roll history: {rolls.join(", ") || "-"}
-        </div>
-      </main>
-
-      <Footer />
+      {dice && <div className="text-lg mb-2">You rolled: {dice}</div>}
+      <div className="text-2xl font-bold">Position: {pos}</div>
     </div>
   );
 }

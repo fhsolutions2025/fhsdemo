@@ -1,47 +1,14 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-
-// SegMint Placeholder
-const segmintProfile = "bigwins"; // replace with dynamic logic later
-
 export default function Splash() {
-  const router = useRouter();
-  const [mobile, setMobile] = useState("");
-
-  const handleContinue = () => {
-    if (mobile) {
-      router.push("/otp");
-    }
-  };
-
   return (
-    <div className="flex flex-col h-screen">
-      {/* Banner Area */}
-      <div className="h-1/2 w-full">
-        <img
-          src={`/images/${segmintProfile}-splash-banner.png`}
-          alt="Splash Banner"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Mobile Input */}
-      <div className="flex flex-col items-center justify-center h-1/2 bg-white p-6">
-        <h2 className="text-xl font-bold mb-4">Enter Mobile Number</h2>
-        <input
-          type="tel"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-          placeholder="10-digit mobile number"
-          className="w-full border rounded px-3 py-2 mb-4"
-        />
-        <button
-          onClick={handleContinue}
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
-        >
-          Continue
-        </button>
-      </div>
-    </div>
+    <main className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-indigo-700 to-purple-800 text-white">
+      <h1 className="text-5xl font-extrabold mb-6 animate-fade-in">🚀 Welcome to FullHousey</h1>
+      <p className="text-lg opacity-80 mb-10">Your personalized gaming journey starts here</p>
+      <button
+        onClick={() => (window.location.href = "/otp")}
+        className="px-8 py-3 bg-yellow-400 text-black font-bold rounded-xl shadow-lg hover:scale-105 transition"
+      >
+        Continue →
+      </button>
+    </main>
   );
 }

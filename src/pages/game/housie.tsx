@@ -1,37 +1,44 @@
-import React, { useState } from "react";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import NumPad from "../../components/numpad";
-import AiNumPad from "../../components/ai-numpad";
-import PrizeBoard from "../../components/prize-board";
-import TicketCarousel from "../../components/ticket-carousel";
+import { useState } from "react";
 
 export default function Housie() {
-  const [selectedNumber, setSelectedNumber] = useState<number | null>(null);
+  const [called, setCalled] = useState<number[]>([]);
+  const [last, setLast] = useState<number | null>(null);
+
+  const callNumber = () => {
+    if (called.length >= 90) return;
+    let num;
+    do {
+      num = Math.floor(Math.random() * 90) + 1;
+    } while (called.includes(num));
+    setCalled([...called, num]);
+    setLast(num);
+  };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      <Header />
+    <div className="pt-16 pb-20 flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4">🎟️ Housie</h1>
+      
+      <button
+        onClick={callNumber}
+        className="px-6 py-2 bg-green-500 rounded-lg text-white mb-6"
+      >
+        Call Number
+      </button>
 
-      <main className="flex-1 p-4 space-y-4">
-        <h1 className="text-xl font-bold">🎲 Housie Show</h1>
+      {last && <div className="text-4xl font-bold mb-4">Last: {last}</div>}
 
-        <PrizeBoard />
-
-        <TicketCarousel />
-
-        <div className="grid grid-cols-2 gap-4">
-          <NumPad onSelect={setSelectedNumber} />
-          <AiNumPad onSelect={setSelectedNumber} />
-        </div>
-
-        <div className="text-center mt-4">
-          Selected Number:{" "}
-          <span className="font-bold">{selectedNumber ?? "-"}</span>
-        </div>
-      </main>
-
-      <Footer />
+      <div className="grid grid-cols-10 gap-2">
+        {Array.from({ length: 90 }, (_, i) => i + 1).map((n) => (
+          <div
+            key={n}
+            className={`w-8 h-8 flex items-center justify-center rounded text-sm font-bold ${
+              called.includes(n) ? "bg-green-600 text-white" : "bg-gray-200 text-gray-800"
+            }`}
+          >
+            {n}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

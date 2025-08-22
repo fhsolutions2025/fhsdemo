@@ -1,48 +1,41 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
 
-// SegMint Placeholder
-const segmintProfile = "bigwins";
+export default function OTP() {
+  const [otp, setOtp] = useState(["", "", "", ""]);
 
-export default function Otp() {
-  const router = useRouter();
-  const [otp, setOtp] = useState("");
-
-  const handleVerify = () => {
-    if (otp.length === 4) {
-      router.push("/profile");
+  const handleChange = (value: string, index: number) => {
+    if (/^\d?$/.test(value)) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+      if (value && index < 3) {
+        document.getElementById(`otp-${index + 1}`)?.focus();
+      }
     }
   };
 
   return (
-    <div className="flex flex-col h-screen">
-      {/* Banner Area */}
-      <div className="h-1/2 w-full">
-        <img
-          src={`/images/${segmintProfile}-otp-banner.png`}
-          alt="OTP Banner"
-          className="w-full h-full object-cover"
-        />
+    <main className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-pink-600 to-red-600 text-white">
+      <h2 className="text-3xl font-bold mb-8">🔑 Enter OTP</h2>
+      <div className="flex gap-4 mb-8">
+        {otp.map((digit, i) => (
+          <input
+            key={i}
+            id={`otp-${i}`}
+            type="text"
+            maxLength={1}
+            value={digit}
+            onChange={(e) => handleChange(e.target.value, i)}
+            className="w-14 h-14 text-center text-2xl font-bold rounded-xl bg-white text-black shadow-md focus:ring-4 focus:ring-yellow-400"
+          />
+        ))}
       </div>
-
-      {/* OTP Input */}
-      <div className="flex flex-col items-center justify-center h-1/2 bg-white p-6">
-        <h2 className="text-xl font-bold mb-4">Enter OTP</h2>
-        <input
-          type="text"
-          maxLength={4}
-          value={otp}
-          onChange={(e) => setOtp(e.target.value)}
-          placeholder="4-digit OTP"
-          className="w-full border rounded px-3 py-2 mb-4 text-center tracking-widest text-2xl"
-        />
-        <button
-          onClick={handleVerify}
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
-        >
-          Verify
-        </button>
-      </div>
-    </div>
+      <button
+        onClick={() => (window.location.href = "/profile")}
+        className="px-8 py-3 bg-yellow-400 text-black font-bold rounded-xl shadow-lg hover:scale-105 transition"
+      >
+        Verify →
+      </button>
+    </main>
   );
 }
