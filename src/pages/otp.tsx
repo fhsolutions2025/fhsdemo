@@ -35,9 +35,11 @@ export default function OTP() {
         onClick={() => (window.location.href = "/profile")}
         className="px-8 py-3 bg-yellow-400 text-black font-bold rounded-xl shadow-lg hover:scale-105 transition"
         className="btn-primary px-8 py-3"
+        className="btn-primary px-8 py-3 bg-yellow-400 text-black font-bold rounded-xl shadow-lg hover:scale-105 transition"
       >
         Verify →
       </button>
     </main>
   );
+}
 }
