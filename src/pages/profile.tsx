@@ -1,6 +1,8 @@
+import React from "react";
 import Header from "@/components/header";
+import { Profile } from "@/context/ProfileContext";
 
-const profiles = [
+const profiles: Profile[] = [
   {
     id: "bigwins",
     name: "Big Wins",
@@ -49,7 +51,7 @@ const profiles = [
 ];
 
 export default function ProfileSelector() {
-  const selectProfile = (profile: any) => {
+  const selectProfile = (profile: Profile) => {
     if (typeof window !== "undefined") {
       localStorage.setItem("profile", JSON.stringify(profile));
       window.location.href = "/foyer";
@@ -60,7 +62,9 @@ export default function ProfileSelector() {
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-800 to-gray-900 text-white">
       <Header />
       <main className="flex-1 p-8">
-        <h2 className="text-3xl font-bold mb-6 text-center">🎭 Choose Your Profile</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          🎭 Choose Your Profile
+        </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
           {profiles.map((p) => (
             <button

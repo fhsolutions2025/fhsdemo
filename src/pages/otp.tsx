@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Header from "@/components/header";
 import { useProfile } from "@/context/ProfileContext";
 
@@ -38,7 +38,9 @@ export default function OTP() {
                 type="text"
                 maxLength={1}
                 value={digit}
-                onChange={(e) => handleChange(e.target.value, i)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleChange(e.target.value, i)
+                }
                 className="w-14 h-14 text-center text-2xl font-bold rounded-xl bg-white text-black shadow-md focus:ring-4 focus:ring-yellow-400"
               />
             ))}

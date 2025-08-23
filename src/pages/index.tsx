@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 export default function Index() {
   const router = useRouter();
@@ -13,11 +13,15 @@ export default function Index() {
   return (
     <div className="flex h-screen items-center justify-center bg-gradient-gold">
       <div className="card p-6 shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">Welcome to FullHousey Demo</h1>
+        <h1 className="text-2xl font-bold mb-4">
+          Welcome to FullHousey Demo
+        </h1>
         <input
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value)
+          }
           placeholder="Enter password"
           className="w-full px-3 py-2 border rounded mb-4"
         />

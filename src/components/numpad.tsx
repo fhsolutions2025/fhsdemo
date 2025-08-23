@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 interface NumPadProps {
-  onSelect?: (num: number) => void;
+  onCallNumber?: (num: number) => void;
 }
 
-export default function NumPad({ onSelect }: NumPadProps) {
+const NumPad: React.FC<NumPadProps> = ({ onCallNumber }) => {
   const [rangeStart, setRangeStart] = useState<number | null>(null);
   const ranges = Array.from({ length: 9 }, (_, i) => i * 10 + 1);
 
@@ -13,7 +13,7 @@ export default function NumPad({ onSelect }: NumPadProps) {
   };
 
   const handleNumberClick = (num: number) => {
-    if (onSelect) onSelect(num);
+    if (onCallNumber) onCallNumber(num);
     setRangeStart(null);
   };
 
@@ -49,4 +49,6 @@ export default function NumPad({ onSelect }: NumPadProps) {
       )}
     </div>
   );
-}
+};
+
+export default NumPad;
