@@ -1,40 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-interface AiNumPadProps {
-  onSelect?: (num: number) => void;
+export interface AiNumPadProps {
+  onCallNumber: (num: number) => void;
 }
 
-export default function AiNumPad({ onSelect }: AiNumPadProps) {
-  const [suggestion, setSuggestion] = useState<number | null>(null);
-
-  useEffect(() => {
-    // Demo suggestion refresh every 3s
-    const interval = setInterval(() => {
-      setSuggestion(Math.floor(Math.random() * 90) + 1);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+const AiNumPad: React.FC<AiNumPadProps> = ({ onCallNumber }) => {
+  const numbers = Array.from({ length: 12 }, (_, i) => i + 1);
 
   return (
-    <div className="card w-full space-y-2">
-      <h2 className="font-semibold">AI NumPad 🤖</h2>
-
-      <div className="flex flex-wrap gap-2">
-        {Array.from({ length: 9 }, (_, i) => i * 10 + 1).map((start) => (
-          <button
-            key={start}
-            onClick={() => onSelect && onSelect(start)}
-            className="flex-1 m-1 py-2 rounded bg-purple-200 hover:bg-purple-300"
-          >
-            {start}-{start + 9}
-          </button>
-        ))}
-      </div>
-
-      <div className="text-sm text-gray-600">
-        Suggested pick:{" "}
-        <span className="font-bold">{suggestion ?? "-"}</span>
-      </div>
+    <div className="grid grid-cols-3 gap-2">
+      {numbers.map((n) => (
+        <button
+          key={n}
+          type="button"
+          onClick={() => onCallNumber(n)}
+          className="p-4 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        >
+          {n}
+        </button>
+      ))}
     </div>
   );
-}
+};
+
+export default AiNumPad;
