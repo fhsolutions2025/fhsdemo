@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import useProfile from "../context/ProfileContext"; // Corrected import
+import { useProfile } from "@/context/ProfileContext";
 
 export default function Header() {
-  const router = useRouter();
-  const { pathname } = router;
   const { profile } = useProfile();
+  const { pathname } = useRouter();
 
   const title = pathname.includes("housie")
     ? "Housie"
@@ -13,17 +12,16 @@ export default function Header() {
     ? "Snakes"
     : "Lobby";
 
+  const backgroundColor = profile?.palette.primary ?? "#000";
+
   return (
-    <header
-      className="header"
-      style={{ backgroundColor: profile.color }}
-    >
+    <header className="header" style={{ backgroundColor }}>
       <Link href="/lobby" className="text-xl font-bold tracking-wide">
         FullHousey
       </Link>
       <h2 className="text-lg font-semibold">{title}</h2>
       <Link href="/profile" className="w-8 h-8 rounded-full overflow-hidden">
-        {profile.img ? (
+        {profile?.img ? (
           <img
             src={profile.img}
             alt={profile.name}
