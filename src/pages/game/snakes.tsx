@@ -1,50 +1,79 @@
-// src/pages/game/snakes.tsx
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import DiceMind from "@/components/dicemind";
-import { useState } from "react";
+// src/services/snakes/snakes.tsx
+"use client";
 
-export default function Snakes() {
-  const [playerPosition, setPlayerPosition] = useState(0);
-  const [winner, setWinner] = useState<number | null>(null);
+import React, { useState } from "react";
 
-  // 🎲 handle dice roll
-  const handleRoll = (roll: number) => {
-    let newPos = playerPosition + roll;
+export default function SnakesGame() {
+  const [position, setPosition] = useState(0);
+  const [message, setMessage] = useState("");
 
-    // basic win condition: reach 30
-    if (newPos >= 30) {
-      newPos = 30;
-      setWinner(1);
+  // Snakes and ladders board mapping
+  const snakes: Record<number, number> = {
+    16: 6,
+    47: 26,
+    49: 11,
+    56: 53,
+    62: 19,
+    64: 60,
+    87: 24,
+    93: 73,
+    95: 75,
+    98: 78,
+  };
+
+  const ladders: Record<number, number> = {
+    1: 38,
+    4: 14,
+    9: 31,
+    21: 42,
+    28: 84,
+    36: 44,
+    51: 67,
+    71: 91,
+    80: 100,
+  };
+
+  const rollDice = () => {
+    const roll = Math.floor(Math.random() * 6) + 1; // dice roll 1-6
+    let newPos = position + roll;
+
+    if (newPos > 100) {
+      setMessage("You need the exact number to win!");
+      return;
     }
 
-    setPlayerPosition(newPos);
+    if (snakes[newPos]) {
+      newPos = snakes[newPos];
+      setMessage(`Oops! Bitten by a snake 🐍. Down to ${newPos}`);
+    } else if (ladders[newPos]) {
+      newPos = ladders[newPos];
+      setMessage(`Yay! Climbed a ladder 🎉. Up to ${newPos}`);
+    } else {
+      setMessage(`Moved to ${newPos}`);
+    }
+
+    setPosition(newPos);
+
+    if (newPos === 100) {
+      setMessage("🎊 Congratulations! You reached 100 and won the game!");
+    }
   };
 
   return (
-    <main className="min-h-screen flex flex-col">
-      {/* Global Header */}
-      <Header />
+    <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-400 to-blue-600 text-white p-6">
+      <h1 className="text-3xl font-bold mb-4">🎲 Snakes & Ladders</h1>
 
-      {/* Game Title */}
-      <div className="text-center text-2xl font-bold mt-4">
-        🐍 Snakes &amp; Ladders 🎲
+      <div className="bg-white text-black rounded-lg shadow-lg p-6 w-80 text-center">
+        <p className="text-lg mb-2">Current Position: {position}</p>
+        <p className="text-sm italic mb-4">{message}</p>
+
+        <button
+          onClick={rollDice}
+          className="btn-secondary px-6 py-2 bg-blue-500 rounded-lg text-white mb-6 hover:bg-blue-700 transition"
+        >
+          Roll Dice 🎲
+        </button>
       </div>
-
-      {/* Game Board Placeholder */}
-      <div className="flex-grow flex flex-col items-center justify-center">
-        <div className="border-2 border-gray-300 rounded-lg p-6 w-64 text-center bg-white shadow">
-          <p className="mb-2 font-semibold">Player 1 Position: {playerPosition}</p>
-          {winner ? (
-            <p className="text-green-600 font-bold">🎉 Player {winner} Wins! 🎉</p>
-          ) : (
-            <DiceMind onRoll={handleRoll} />
-          )}
-        </div>
-      </div>
-
-      {/* Global Footer */}
-      <Footer />
     </main>
   );
 }
