@@ -1,16 +1,11 @@
-// src/pages/_app.tsx
- import type { AppProps } from "next/app";
--import Footer from "../components/footer"; // ✅ lowercase matches your file
- import "../styles/globals.css";
- 
- function MyApp({ Component, pageProps }: AppProps) {
--  return (
--    <>
--      <Component {...pageProps} />
--      <Footer />
--    </>
--  );
-+  return <Component {...pageProps} />;
- }
- 
- export default MyApp;
+import type { AppProps } from "next/app";
+import { ProfileProvider } from "@/context/ProfileContext";
+import "@/styles/globals.css";
+
+export default function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <ProfileProvider>
+      <Component {...pageProps} />
+    </ProfileProvider>
+  );
+}
