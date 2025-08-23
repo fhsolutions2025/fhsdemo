@@ -1,6 +1,6 @@
  import Link from "next/link";
  import { useRouter } from "next/router";
-+import { useProfile } from "../context/ProfileContext";
+ import { useProfile } from "../context/ProfileContext";
  
  export default function Header() {
    const router = useRouter();
